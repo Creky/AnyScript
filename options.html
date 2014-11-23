@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script>
+window.onload=function(){
+	var store=localStorage;
+	var at=document.getElementById("autoSubmit");
+	at.checked=(store.autoSubmit=="1")?true:false;
+	at.addEventListener("click",function(){
+			store.autoSubmit=at.checked?"1":"0";
+	});
+	var cont=document.getElementById("cont");
+	cont.addEventListener("blur",function(){
+		store.autoSubmitContent=cont.value;
+	});
+	alert(localStorage.autoSubmit);
+}
+</script>
+<style type="text/css">
+.ct{
+	margin-top:20px;
+}
+.ct textarea{
+	clear:both;
+	width:500px;
+	height:100px;
+	margin-top:10px;
+}
+</style>
+</head>
+<body>
+<div class="auto_reply"><input type="checkbox" checked id="autoSubmit"  value="" />自动回复</div>
+<div class="ct">
+<div>自动回复内容：</div>
+<div>
+<textarea id="cont" ></textarea>
+</div>
+</div>
+
+</body>
+</html>
