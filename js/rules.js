@@ -1,4 +1,4 @@
-var anyScriptRules=[
+[
 	{
 		"domain":"www.rijil.com",
 		"name":"rijil.com",

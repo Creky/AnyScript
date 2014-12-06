@@ -1,29 +1,132 @@
-<html>
+<!doctype html>
+<html lang="en" ng-app>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/storedb.js"></script>
-<script type="text/javascript" src="js/json2.js"></script>
-<script type="text/javascript" src="js/options.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/storedb.js"></script>
+	<script type="text/javascript" src="js/json2.js"></script>
+	<script type="text/javascript" src="js/options.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 <style type="text/css">
-.ct{
-	margin-top:20px;
+.container{
+	margin-top: 10px;
 }
-.ct textarea{
-	clear:both;
-	width:500px;
-	height:100px;
-	margin-top:10px;
+.nopd{
+	padding-left:0;
+	padding-right: 0;
+}
+.ruleList table thead tr th:last-child,.ruleList table tbody tr td:last-child{
+	text-align: center;
 }
 </style>
 </head>
 <body>
-<div class="ct">
-<div>自动回复内容：</div>
-<div>
-<textarea id="cont" ></textarea>
-</div>
-</div>
+	<div class="container">
+		<div class="col-md-12 text-left nopd">
+			<form class="form-inline" role="form">
+				<div class="form-group col-md-6 pull-left nopd">
+					<div class="input-group col-md-12">
+						<input type="text" class="form-control col-md-12" />
+						<span class="input-group-btn" style="width:70px;">
+							<button class="btn btn-default">搜索</button>
+						</span>
+					</div>
+				</div>
+				<div class="form-group nopd pull-left" style="margin-top:12px;">
+					<input type="checkbox" style="vertical-align:-3px"/>
+					自定义规则
+				</div>
+				<div class="form-group nopd pull-right">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModel">添加规则</button>
+				</div>
+			</form>
+		</div>
+		<div class="ruleList col-md-12 nopd">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>名称</th>
+					<th>域名</th>
+					<th>匹配</th>
+					<th class="col-sm-2">功能</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+					<td>禁用 编辑 删除</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Jacob</td>
+					<td>Thornton</td>
+					<td>@fat</td>
+					<td>@mdo</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Larry</td>
+					<td>the Bird</td>
+					<td>@twitter</td>
+					<td>@mdo</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div class="col-md-9">
+			<pagination total-items="vm.items|filter:vm.filter|size" ng-model="vm.page.index" max-size="5"
+	                items-per-page="vm.page.size" class="pagination-sm pull-right" boundary-links="true"></pagination>
+		</div>
 
+
+	<div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel">添加规则</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form class="form-horizontal" role="form">
+			  <div class="form-group">
+			    <label for="name" class="col-sm-2 control-label">名称</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control" id="name" placeholder="请输入规则名称">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="domain" class="col-sm-2 control-label">域名</label>
+			    <div class="col-sm-9">
+			      <input type="text" class="form-control" id="domain" placeholder="请输入域名">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="url" class="col-sm-2 control-label">匹配</label>
+			    <div class="col-sm-9">
+			      <input type="url" class="form-control" id="url" placeholder="请输入匹配表达式">
+			    </div>
+			  </div>
+				<div class="form-group">
+					<label for="code" class="col-sm-2 control-label">代码</label>
+					<div class="col-sm-9">
+						<textarea class="form-control" rows="10" id="code" placeholder="请输入代码"></textarea>
+					</div>
+				</div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-primary">保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
 </body>
 </html>
