@@ -22,13 +22,13 @@
 }
 </style>
 </head>
-<body>
+<body ng-controller="ruleListCtrl">
 	<div class="container">
 		<div class="col-md-12 text-left nopd">
 			<form class="form-inline" role="form">
 				<div class="form-group col-md-6 pull-left nopd">
 					<div class="input-group col-md-12">
-						<input type="text" class="form-control col-md-12" />
+						<input type="text" class="form-control col-md-12" ng-model="query"/>
 						<span class="input-group-btn" style="width:70px;">
 							<button class="btn btn-default">搜索</button>
 						</span>
@@ -55,26 +55,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
+				<tr ng-repeat="rule in rules | filter:query">
+					<td ng-bind="rule.id"></td>
+					<td ng-bind="rule.name"></td>
+					<td ng-bind="rule.domain"></td>
+					<td ng-bind="rule.url"></td>
 					<td>禁用 编辑 删除</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-					<td>@mdo</td>
 				</tr>
 			</tbody>
 		</table>
