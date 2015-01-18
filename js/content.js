@@ -8,9 +8,12 @@ jQuery.noConflict();
 
 (function(){
 	var $$=jQuery;
-	var rules=anyScriptRules;
-	console.log(rules);
-	if(rules){
+	$$.get(chrome.extension.getURL('js/rules.json'),function(rulesData){
+		console.log("Rules:"+rulesData);
+		executeRules(rulesData);
+	},"json");
+	
+	function executeRules(rules){
 		for(var i=0;i<rules.length;i++){
 			var reg=new RegExp(rules[i].url,"gi");
 			if(reg.test(location.href)){

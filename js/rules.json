@@ -1,8 +1,8 @@
 [
 	{
-		"domain":"www.rijil.com",
-		"name":"rijil.com",
-		"url":"http://www\\.rijil\\.com/.*",
+		"domain":"www.lupic1.com",
+		"name":"lupic1.com",
+		"url":"http://www\\.lupic1\\.com/.*",
 		"code":"$(\".jianjie,.vpl,.nr-box,.play-nr-l,.b\").css({\"overflow\":\"visible\",\"overflowY\":\"visible\"});$(\".jianjie,.nr-box\",\".play-nr-l\").width(1400).height(\"auto\");$(\".b\").width(1700);"
 	}
 ]

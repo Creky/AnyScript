@@ -16,8 +16,11 @@
 	},
 	"content_scripts" : [{
 		"matches" : ["http://*/*","https://*/*"],
-		"js" : ["js/jquery.min.js","js/rules.js","js/content.js"],
+		"js" : ["js/jquery.min.js","js/content.js"],
 		"all_frames":true
 	}],
-	"permissions" : ["tabs","https://*/*","http://*/*"]
+	"permissions" : ["tabs","https://*/*","http://*/*"],
+	"web_accessible_resources":[
+		"js/rules.json"
+	]
 }

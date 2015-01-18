@@ -18,10 +18,13 @@ function saveCont(){
 }
 */
 
-var ruleControllers = angular.module('ruleControllers', []);
+var anyScript = angular.module('anyScript', []);
 
-ruleControllers.controller('ruleListCtrl', ['$scope', 'Phone',
-	function($scope, Phone) {
-	$scope.phones = Phone.query();
-	$scope.orderProp = 'age';
-}]);
+anyScript.controller('ruleListCtrl', ['$scope', '$http',
+	function ($scope, $http){
+		$http.get(chrome.extension.getURL('js/rules.json')).success(function(rulesData){
+				$scope.rules=rulesData;
+			});
+	}
+]);
+

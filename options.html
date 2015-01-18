@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="anyScript">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/angular.js"></script>
 	<script type="text/javascript" src="js/storedb.js"></script>
 	<script type="text/javascript" src="js/json2.js"></script>
 	<script type="text/javascript" src="js/options.js"></script>
@@ -108,7 +108,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	        <button type="button" class="btn btn-primary">保存</button>
+	        <button type="button" class="btn btn-primary" ng-click="addNewRule()">保存</button>
 	      </div>
 	    </div>
 	  </div>
