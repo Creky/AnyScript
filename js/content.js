@@ -1,25 +1,34 @@
 //http://developer.chrome.com/extensions/getstarted.html
 
 String.prototype.trim = function() {
-		return this.replace(/(^\s*)|(\s*$)/g, "");
+	return this.replace(/(^\s*)|(\s*$)/g, "");
 };
 
-jQuery.noConflict();
+(function() {
+	var req = {};
+	req.type = 'queryRule';
+	req.hostName = location.hostname;
+	req.url = location.href;
+	chrome.extension.sendRequest(req, function(resp) {
+		console.log("Receive response:", resp);
+		if (resp.status == 1) {
+			executeRules(resp.rules);
+		}
+	});
 
-(function(){
-	var $$=jQuery;
-	$$.get(chrome.extension.getURL('js/rules.json'),function(rulesData){
-		console.log("Rules:"+rulesData);
-		executeRules(rulesData);
-	},"json");
-	
-	function executeRules(rules){
-		for(var i=0;i<rules.length;i++){
-			var reg=new RegExp(rules[i].url,"gi");
-			if(reg.test(location.href)){
-				console.log("run code:"+rules[i].code);
-				var code=rules[i].code.replace(/\$\(/ig,"$$$$(").replace(/\$\./ig,"$$$$.");
-				eval(code);
+	function executeRules(rules) {
+		if (!rules) {
+			return;
+		}
+		for (var i = 0; i < rules.length; i++) {
+			if (!rules[i].type) {
+				console.log("run code:", rules[i].code);
+				eval(rules[i].code);
+			} else if (rules[i].type == 1) {
+				//Run with page script context
+				var script = document.createElement("script");
+				script.innerHTML = rules[i].code;
+				document.body.appendChild(script);
 			}
 		}
 	}

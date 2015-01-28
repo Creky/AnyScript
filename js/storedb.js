@@ -3,11 +3,26 @@ var storedb = function(collectionName){
     
     var err;
     var cache = localStorage[collectionName] ? JSON.parse(localStorage[collectionName]) : [];
+    var checkIdExist=function(checkId){
+        for(var i = 0; i < cache.length; i++){
+            if(cache[i]["_id"] == checkId){
+                return true;
+            }
+        }
+        return false;
+    };
 
     return {
+        createId: function(){
+            var id=new Date().valueOf();
+            while(checkIdExist(id)){
+                id++;
+            }
+            return id;
+        },
 
         insert: function(obj,callback){
-            obj["_id"] = new Date().valueOf();          
+            obj["_id"] = obj["_id"]&&!checkIdExist(obj["_id"])?obj["_id"]:this.createId();
             cache.push(obj);
             localStorage.setItem(collectionName,JSON.stringify(cache));
             if(callback)
@@ -82,7 +97,7 @@ var storedb = function(collectionName){
             } else {
 
                 for(var key in obj){
-                    for(var i = 0; i < cache.length; i++){
+                    for (var i = cache.length - 1; i >= 0; i--) {
                         if(cache[i][key] == obj[key]){
                             cache.splice(i,1);
                         }

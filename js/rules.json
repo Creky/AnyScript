@@ -4,5 +4,12 @@
 		"name":"lupic1.com",
 		"url":"http://www\\.lupic1\\.com/.*",
 		"code":"$(\".jianjie,.vpl,.nr-box,.play-nr-l,.b\").css({\"overflow\":\"visible\",\"overflowY\":\"visible\"});$(\".jianjie,.nr-box\",\".play-nr-l\").width(1400).height(\"auto\");$(\".b\").width(1700);"
+	},
+	{
+		"domain":"www.cnc7.net",
+		"name":"cnc7.net",
+		"url":"http://www\\.cnc7\\.net/plugin\\.php\\?id=dsu_paulsign:sign",
+		"code":"Icon_selected(\"kx\");setTimeout(function(){showWindow('qwindow', 'qiandao', 'post', '0');},300);setTimeout(function(){location.href='http://www.cnc7.net/forum.php?mod=forumdisplay&fid=38&filter=author&orderby=dateline'},500);",
+		"type":1
 	}
 ]
