@@ -16,35 +16,61 @@ function anyScriptControl($scope, $http){
 			});
 		});
 	};
-	$scope.addNewRule=function(){
-		var id=$("#id").val();
+	$scope.saveRule=function(){
+		var id=$("#_id").val();
 		var form=$("#newRuleForm");
 		if(id){
-			ruleDB.find({"id":id},function(err,res){
+			ruleDB.find({"_id":id},function(err,res){
 				if(!err&&res){
-					
-					ruleDB.update({"id":id},{"$set":form.form2json()});
-					form.reset();
+					ruleDB.update({"_id":id},{"$set":form.form2json()});
 					$.showInfo("更新成功！","",2);
 				}
 			});
 		}else{
 			ruleDB.insert(form.form2json(),function(err,res){
 				if(!err){
-					form.reset();
 					$.showInfo("添加成功！","",2);
 				}
 			});
 		}
+		$('#addModel').modal('hide');
+	};
+	$scope.addRule=function(){
+		$scope.initRule={};
+		$('#addModel').modal('show');
+	};
+	$scope.editRule=function(id){
+		ruleDB.find({"_id":id},function(err,res){
+			if(!err&&res&&res.length>0){
+				$scope.initRule=res[0];
+				$('#addModel').modal('show');
+			}else{
+				$.showInfo("对不起，未找到数据！");
+			}
+		});
 	};
 	$scope.delRule=function(id){
 		if(id){
-			ruleDB.remove({"_id":id},function(err,res){
-				$.showInfo("移除成功！","",1);
+			$.messager.confirm("", "确定要删除这条规则吗？", function() { 
+				ruleDB.remove({"_id":id},function(err,res){
+					$scope.rules=ruleDB.find();
+					$.showInfo("删除成功！","",1);
+				});
 			});
 		}
 	};
-
+	$scope.forbidRule=function(id){
+		if(id){
+			ruleDB.find({"_id":id},function(err,res){
+				if(!err&&res.length>0){
+					var rule=res[0];
+					rule.forbid=rule.forbid==1?0:1;
+					ruleDB.update({"_id":id},{"$set":rule});
+					$scope.rules=ruleDB.find();
+				}
+			});
+		}
+	};
 	storedb("configTable").find({"name":"init"},function(err,res){
 		if(err||!res||!res[0]||res[0].value!=1){
 			$scope.importLocalRules();
@@ -56,4 +82,8 @@ function anyScriptControl($scope, $http){
 
 	$scope.rules=ruleDB.find();
 }
+
+
+
+
 
