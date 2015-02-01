@@ -15,10 +15,11 @@
 		"default_popup" : "popup.html"
 	},
 	"content_scripts" : [{
-		"matches" : ["http://*/*","https://*/*"],
-		"js" : ["js/jquery.min.js","js/content.js"],
-		"all_frames":true
-	}],
+			"matches" : ["http://*/*","https://*/*"],
+			"js" : ["js/jquery.min.js","js/content.js"],
+			"all_frames":true
+		}
+	],
 	"permissions" : ["tabs","https://*/*","http://*/*"],
 	"web_accessible_resources":[
 		"js/rules.json"

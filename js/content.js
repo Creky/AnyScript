@@ -27,6 +27,7 @@ String.prototype.trim = function() {
 			} else if (rules[i].type == 1) {
 				//Run with page script context
 				var script = document.createElement("script");
+				script.setAttribute("type","text/javascript");
 				script.innerHTML = rules[i].code;
 				document.body.appendChild(script);
 			}

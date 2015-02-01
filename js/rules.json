@@ -1,15 +1,47 @@
-[
-	{
-		"domain":"www.lupic1.com",
-		"name":"lupic1.com",
-		"url":"http://www\\.lupic1\\.com/.*",
-		"code":"$(\".jianjie,.vpl,.nr-box,.play-nr-l,.b\").css({\"overflow\":\"visible\",\"overflowY\":\"visible\"});$(\".jianjie,.nr-box\",\".play-nr-l\").width(1400).height(\"auto\");$(\".b\").width(1700);"
-	},
-	{
-		"domain":"www.cnc7.net",
-		"name":"cnc7.net",
-		"url":"http://www\\.cnc7\\.net/plugin\\.php\\?id=dsu_paulsign:sign",
-		"code":"Icon_selected(\"kx\");setTimeout(function(){showWindow('qwindow', 'qiandao', 'post', '0');},300);setTimeout(function(){location.href='http://www.cnc7.net/forum.php?mod=forumdisplay&fid=38&filter=author&orderby=dateline'},500);",
-		"type":1
-	}
-]
+[{
+	"domain": "www.lupic1.com",
+	"name": "lupic1.com",
+	"url": "http://www\\.lupic1\\.com/.*",
+	"code": "$(\".jianjie,.vpl,.nr-box,.play-nr-l,.b\").css({\"overflow\":\"visible\",\"overflowY\":\"visible\"});\r\n$(\".jianjie,.nr-box\",\".play-nr-l\").width(1400).height(\"auto\");$(\".b\").width(1700);",
+	"_id": "1422550943455",
+	"forbid": 0,
+	"type": "1"
+}, {
+	"domain": "www.cnc7.net",
+	"name": "cnc7.net",
+	"url": "http://www\\.cnc7\\.net/plugin\\.php\\?id=dsu_paulsign:sign",
+	"code": "Icon_selected(\"kx\");setTimeout(function(){showWindow('qwindow', 'qiandao', 'post', '0');},300);setTimeout(function(){location.href='http://www.cnc7.net/forum.php?mod=forumdisplay&fid=38&filter=author&orderby=dateline'},500);",
+	"type": 1,
+	"_id": 1422550943456,
+	"forbid": 0
+}, {
+	"_id": "1422642431959",
+	"name": "太平洋看图自动去音乐",
+	"domain": "dp.pconline.com.cn",
+	"url": "http://dp\\.pconline\\.com\\.cn/photo/list_.+?\\.html",
+	"code": "$(\".tbA>.tr embed\").remove();",
+	"type": "1"
+}, {
+	"_id": "1422644227162",
+	"name": "太平洋看图自动进组图",
+	"domain": "dp.pconline.com.cn",
+	"url": "http://dp\\.pconline\\.com\\.cn/photo/\\d+\\.html",
+	"type": "1",
+	"code": "location.href=location.href.replace(/\\/(\\d+)\\.html$/ig,\"/list_$1.html\");"
+}, {
+	"_id": "1422644862933",
+	"name": "QQ空间",
+	"domain": "user.qzone.qq.com",
+	"url": "http://user.qzone.qq.com/.+",
+	"type": "1",
+	"code": "setInterval(function(){\r\njQuery(\"#tab_applist_show\").remove();\r\njQuery(\"div[id^='QM_Container_']\").has('#gdtLifeCnt').remove();\r\njQuery(\".f-single.f-s-s\").has(\".feed-hot-bar:contains('推广')\").remove();\r\njQuery(\".f-single.f-s-s:contains('我和好友们都在玩')\").remove();\r\njQuery(\".f-single.f-s-s:contains('赶紧送礼物祝')\").remove();\r\njQuery(\".f-single.f-s-s:contains('农场又升一级')\").remove();\r\njQuery(\".f-single.f-s-s\").has(\"a:contains('QQ牧场')\").remove();\r\nconsole.log(\"watching...\");\r\n},2000);",
+	"forbid": "0"
+}, {
+	"_id": "1422723985122",
+	"name": "新浪微博大图浏览增强",
+	"domain": "photo.weibo.com",
+	"url": "http://photo\\.weibo\\.com/.+?/large/.+",
+	"forbid": "0",
+	"type": "1",
+	"code": "window.onerror=function(){}\r\nvar jq=document.createElement(\"script\");\r\njq.src=\"http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js\";\r\ndocument.body.appendChild(jq);\r\n\r\nvar pic=document.createElement(\"script\");\r\npic.src=\"http://www.m173.com/js/anypic.js\";\r\ndocument.body.appendChild(pic);\r\nfunction exec(){\r\n\twindow.onerror=function(){}\r\n\tif(typeof jQuery != \"undefined\" && typeof AnyPic != \"undefined\"){\r\n\t\tclearInterval(intl);\r\n\t}else{\r\n\t\tconsole.log(\"Waiting jQuery and AnyPic loaded!\");\r\n\t\treturn;\r\n\t}\r\n\tjQuery.noConflict();\r\n\tvar anyPic=new AnyPic();\r\n\tanyPic.fetchZoomPic=function(img){\r\n\t\tif(typeof img != \"undefined\" && img){\r\n\t\t\treturn img.src.replace(/sinaimg\\.cn\\/.+?\\//ig,\"sinaimg.cn/large/\");\r\n\t\t}\r\n\t}\r\n\tjQuery(function(){\r\n\t\tvar imgPics=new Array();\r\n\t\tvar picIntel;\r\n\t\tfunction exePic(callback){\r\n\t\t\timgs=jQuery(\"ul#slider img\");\r\n\t\t\tif(imgs.length>0&&imgs.eq(0).parent().is(\"a\")){\r\n\t\t\t\tclearInterval(picIntel);\r\n\t\t\t}else{\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\timgs.parent(\"a\").children().unwrap();\r\n\t\t\timgPics=imgs;\r\n\t\t\tanyPic.initImgList(imgPics);\r\n\t\t\tconsole.log(\"Get pic: \",imgs.length);\r\n\t\t\tif(typeof callback ==\"function\"){\r\n\t\t\t\tcallback();\r\n\t\t\t}\r\n\t\t}\r\n\t\tpicIntel=setInterval(exePic,300);\r\n\r\n\t\tanyPic.fetchPrevPicId=function(currentIndex,imgIdList){\r\n\t\t\tif(currentIndex==0&&!jQuery(\"#prev\").hasClass('btn_dis')){\r\n\t\t\t\tjQuery(\"#prev\").get(0).click();\r\n\t\t\t\tanyPic.hide();\r\n\t\t\t}else{\r\n\t\t\t\treturn currentIndex==0?imgIdList[imgIdList.length-1]:imgIdList[currentIndex-1];\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\tanyPic.fetchNextPicId=function(currentIndex,imgIdList){\r\n\t\t\tif(currentIndex==imgIdList.length-1&&!jQuery(\"#next\").hasClass('btn_dis')){\r\n\t\t\t\tjQuery(\"#next\").get(0).click();\r\n\t\t\t\tanyPic.hide();\r\n\t\t\t}else{\r\n\t\t\t\treturn currentIndex==imgIdList.length?imgIdList[0]:imgIdList[currentIndex+1];\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\tjQuery(\"#prev,#next\").click(function(){\r\n\t\t\tvar btn=this;\r\n\t\t\tpicIntel=setInterval(function(){\r\n\t\t\t\texePic(function(){\r\n\t\t\t\t\tif(btn.id==\"next\"){\r\n\t\t\t\t\t\timgPics[0].click();\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\timgPics[imgPics.length-1].click();\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\r\n\t\t\t\t});\r\n\t\t\t},1000);\r\n\t\t});\r\n\t});\r\n}\r\nvar intl=setInterval(exec,500);"
+}]

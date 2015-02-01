@@ -17,7 +17,7 @@ function queryRule(req,sendResponse){
 	ruleDB.find({"domain":req.hostName},function(err,res){
 		if(!err&&res&&res.length>0){
 			for(var i=0;i<res.length;i++){
-				if(res[i].forbid){
+				if(parseInt(res[i].forbid)){
 					continue;
 				}
 				var reg=new RegExp(res[i].url,"gi");
