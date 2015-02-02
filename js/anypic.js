@@ -524,9 +524,11 @@ function showMenu(v) {
 	if (drag) {
 		dragobj.style.cursor = 'move';
 		dragobj.onmousedown = function(event) {
-			try {
-				dragMenu(menuObj, event, 1);
-			} catch (e) {}
+			if(!event.altKey&&!event.ctrlKey&&!event.shiftKey){
+				try {
+					dragMenu(menuObj, event, 1);
+				} catch (e) {}
+			}
 		};
 	}
 	if (cover) $$(menuid + '_cover').style.display = '';
@@ -788,7 +790,7 @@ this.zoom=function (obj, zimg, nocover, pn, showexif) {
 	};
 	var adjustpn = function(w,h) {
 		h = h < 90 ? 90 : h;
-		w=w/3;
+		w = w < 300 ? 100 : w/3;
 		if ($$('zimg_prev')) {
 			$$('zimg_prev').style.height = parseInt(h) + 'px';
 			$$("zimg_prev").style.width = parseInt(w) + 'px';
