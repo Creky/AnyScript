@@ -789,15 +789,21 @@ this.zoom=function (obj, zimg, nocover, pn, showexif) {
 		loading.src = zimg;
 	};
 	var adjustpn = function(w,h) {
+		var wh=document.documentElement.clientWidth;
 		h = h < 90 ? 90 : h;
 		w = w < 300 ? 100 : w/3;
+		var relWith=(wh-w)/4;
+		relWith=relWith<w?w:relWith;
+		offset=w-relWith;
 		if ($$('zimg_prev')) {
 			$$('zimg_prev').style.height = parseInt(h) + 'px';
-			$$("zimg_prev").style.width = parseInt(w) + 'px';
+			$$("zimg_prev").style.width = parseInt(relWith) + 'px';
+			$$("zimg_prev").style.left = offset + 'px';
 		}
 		if ($$('zimg_next')) {
 			$$('zimg_next').style.height = parseInt(h) + 'px';
-			$$("zimg_next").style.width = parseInt(w) + 'px';
+			$$("zimg_next").style.width = parseInt(relWith) + 'px';
+			$$("zimg_next").style.right = offset + 'px';
 		}
 		var cover=$$(menuid + '_cover');
 		if(cover){
@@ -931,6 +937,7 @@ this.zoom=function (obj, zimg, nocover, pn, showexif) {
 		menu.style.height = mheight + 'px';
 		$$(menuid + '_zoomlayer').style.height = (mheight < 120 ? 120 : mheight) + 'px';
 		adjustpn(ele.width,ele.height);
+		setMenuPosition('', menuid, '00');
 		doane(e);
 	};
 	if (!menu && !pn) {
@@ -1003,7 +1010,7 @@ this.zoom=function (obj, zimg, nocover, pn, showexif) {
 		'duration': 3,
 		'pos': '00',
 		'cover': cover,
-		'drag': menuid,
+		'drag': menuid+"_img",
 		'maxh': ''
 	});
 	_attachEvent($$("diaClose"),"click",function(){
