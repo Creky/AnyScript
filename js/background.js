@@ -27,5 +27,5 @@ function queryRule(req,sendResponse){
 			}
 		}
 		sendResponse({"status":1,"rules":rules});
-	});
+	},1);
 }
