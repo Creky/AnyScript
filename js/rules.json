@@ -52,4 +52,20 @@
 	"code": "location.href=location.href.replace(/sinaimg\\.cn\\/.+?\\//ig,\"sinaimg.cn/large/\");",
 	"forbid": "0",
 	"type": "1"
+}, {
+	"_id": "1428502106915",
+	"name": "360doc去除禁止复制等操作",
+	"domain": "360doc.com",
+	"url": ".+\\.360doc\\.com/.+",
+	"forbid": "0",
+	"type": "1",
+	"code": "(function(){\r\n\tvar doc = document;\r\n\tvar bd = doc.body;\r\n\tbd.onselectstart = bd.oncopy = bd.onpaste = bd.onkeydown = bd.oncontextmenu = bd.onmousemove = bd.onselectstart = bd.ondragstart = doc.onselectstart = doc.oncopy = doc.onpaste = doc.onkeydown = doc.oncontextmenu = null;\r\n\tdoc.onselectstart = doc.oncontextmenu = doc.onmousedown = doc.onkeydown = function() {\r\n\t return true\r\n\t};\r\n\twith(document.wrappedJSObject || document) {\r\n\t onmouseup = null;\r\n\t onmousedown = null;\r\n\t oncontextmenu = null\r\n\t}\r\n\tvar arAllElements = document.getElementsByTagName('*');\r\n\tfor (var i = arAllElements.length - 1; i >= 0; i--) {\r\n\t var elmOne = arAllElements;\r\n\t with(elmOne.wrappedJSObject || elmOne) {\r\n\t onmouseup = null;\r\n\t onmousedown = null\r\n\t }\r\n\t}\r\n\tbd.style.webkitUserSelect = 'auto!important';\r\n\tbd.style.MozUserSelect = 'text!important';\r\n})();"
+}, {
+	"_id": "1428567576303",
+	"name": "淘宝自动看大图",
+	"domain": ".+?\\.(alicdn|taobaocdn).com",
+	"url": ".+?\\.(alicdn|taobaocdn)\\.com.+",
+	"forbid": "0",
+	"type": "1",
+	"code": "var url=location.href;\r\nvar regx=/(_\\d{1,5}x\\d{1,5}(q\\d{1,2})?\\..{1,4})+$/ig;\r\nif(regx.test(url)){\r\n location.href=location.href.replace(regx,\"\");\r\n}"
 }]
