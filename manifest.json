@@ -13,6 +13,7 @@
 	"browser_action" : {
 		"default_icon" : "icon_128.png"
 	},
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 	"content_scripts" : [{
 			"matches" : ["http://*/*","https://*/*"],
 			"js" : ["js/jquery.min.js","js/content.js"],

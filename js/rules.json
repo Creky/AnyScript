@@ -1,19 +1,11 @@
 [{
-	"domain": "www.lupic1.com",
-	"name": "lupic1.com",
-	"url": "http://www\\.lupic1\\.com/.*",
-	"code": "$(\".jianjie,.vpl,.nr-box,.play-nr-l,.b\").css({\"overflow\":\"visible\",\"overflowY\":\"visible\"});\r\n$(\".jianjie,.nr-box\",\".play-nr-l\").width(1400).height(\"auto\");$(\".b\").width(1700);",
-	"_id": "1422550943455",
-	"forbid": 0,
-	"type": "1"
-}, {
 	"domain": "www.cnc7.net",
-	"name": "cnc7.net",
+	"name": "cnc7.net自动签到",
 	"url": "http://www\\.cnc7\\.net/plugin\\.php\\?id=dsu_paulsign:sign",
 	"code": "Icon_selected(\"kx\");setTimeout(function(){showWindow('qwindow', 'qiandao', 'post', '0');},300);setTimeout(function(){location.href='http://www.cnc7.net/forum.php?mod=forumdisplay&fid=38&filter=author&orderby=dateline'},500);",
-	"type": 1,
-	"_id": 1422550943456,
-	"forbid": 0
+	"type": "1",
+	"_id": "1422550943456",
+	"forbid": "0"
 }, {
 	"_id": "1422642431959",
 	"name": "太平洋看图自动去音乐",
@@ -67,5 +59,21 @@
 	"url": ".+?\\.(alicdn|taobaocdn)\\.com.+",
 	"forbid": "0",
 	"type": "1",
-	"code": "var url=location.href;\r\nvar regx=/(_\\d{1,5}x\\d{1,5}(q\\d{1,2})?\\..{1,4})+$/ig;\r\nif(regx.test(url)){\r\n location.href=location.href.replace(regx,\"\");\r\n}"
+	"code": "var url=location.href;\r\nvar regx=/(_\\d{1,5}x\\d{1,5}.+?\\..+)+$/ig;\r\nif(regx.test(url)){\r\n location.href=location.href.replace(regx,\"\");\r\n}"
+}, {
+	"_id": 1429298207068,
+	"name": "太平洋自动看大图",
+	"domain": "pconline.com.cn",
+	"url": "http://img\\.pconline\\.com\\.cn/images/.+_mthumb\\.jpg$",
+	"forbid": "0",
+	"type": "1",
+	"code": "location.href=location.href.replace(/_mthumb/ig,'');"
+}, {
+	"_id": "1430443845282",
+	"name": "360云盘自动进入列表模式",
+	"domain": "yunpan.cn",
+	"url": ".+yunpan\\.cn.+",
+	"forbid": "0",
+	"type": "1",
+	"code": "$(\"a[data-cn=list]\").get(0)?$(\"a[data-cn=list]\").get(0).click():void(0);"
 }]

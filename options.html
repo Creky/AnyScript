@@ -3,9 +3,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery.bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/ui-bootstrap-tpls.min.js"></script>
 	<script type="text/javascript" src="js/storedb.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
 	<script type="text/javascript" src="js/options.js"></script>
@@ -35,18 +36,18 @@
 			<form class="form-inline" role="form">
 				<div class="form-group col-md-6 pull-left nopd">
 					<div class="input-group col-md-12">
-						<input type="text" class="form-control col-md-12" ng-model="query"/>
-						<span class="input-group-btn" style="width:70px;">
+						<span class="input-group-btn" style="width:53px">
 							<button class="btn btn-default">搜索</button>
 						</span>
+						<input type="text" class="form-control col-md-12" ng-model="vm.query"/>
 					</div>
 				</div>
-				<div class="form-group nopd pull-left" style="margin-top:12px;">
+				<div class="form-group nopd pull-left hidden" style="margin:12px 0 0 10px;">
 					<input type="checkbox" style="vertical-align:-3px"/>
 					自定义规则
 				</div>
 				<div class="form-group nopd pull-right">
-					<button type="button" class="btn btn-primary" data-toggle="modal" ng-click="addRule()">添加规则</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" ng-click="vm.addRule()">添加规则</button>
 				</div>
 			</form>
 		</div>
@@ -54,7 +55,7 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>序号</th>
+						<th class="text-center">序号</th>
 						<th>名称</th>
 						<th>域名</th>
 						<th>匹配</th>
@@ -62,23 +63,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="rule in rules track by rule._id| filter:query">
-						<td ng-bind="rule._id"></td>
+					<tr ng-repeat="rule in vm.rules | filter:vm.search | paging:vm.page.index:vm.page.size track by rule._id ">
+						<td ng-bind="(vm.page.index-1)*vm.page.size + $index + 1" class="text-center"></td>
 						<td ng-bind="rule.name"></td>
 						<td ng-bind="rule.domain"></td>
 						<td ng-bind="rule.url"></td>
 						<td>
-							<a href="#" ng-if="rule.forbid==1" ng-click="forbidRule(rule._id)">启用</a>
-							<a href="#" ng-if="rule.forbid!=1" ng-click="forbidRule(rule._id)">禁用</a>
-							<a href="#" ng-click="editRule(rule._id)">编辑</a>
-							<a href="#" ng-click="delRule(rule._id)">删除</a>
+							<a href="#" ng-if="rule.forbid==1" ng-click="vm.forbidRule(rule._id)">启用</a>
+							<a href="#" ng-if="rule.forbid!=1" ng-click="vm.forbidRule(rule._id)">禁用</a>
+							<a href="#" ng-click="vm.editRule(rule._id)">编辑</a>
+							<a href="#" ng-click="vm.delRule(rule._id)">删除</a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="col-md-9">
-			<pagination total-items="vm.items|filter:vm.filter|size" ng-model="vm.page.index" max-size="5"
+		<div class="col-md-12">
+			<pagination total-items="vm.rules|filter:vm.search|size" ng-model="vm.page.index" max-size="50"
 	                items-per-page="vm.page.size" class="pagination-sm pull-right" boundary-links="true"></pagination>
 		</div>
 
@@ -97,44 +98,44 @@
 							<div class="form-group">
 								<label for="name" class="col-sm-2 control-label">名称</label>
 								<div class="col-sm-9">
-									<input type="text" id="_id" name="_id" class="hide" ng-model="initRule._id"/>
-									<input type="text" class="form-control" id="name" name="name" ng-model="initRule.name" required="" placeholder="请输入规则名称，简要说明作用"></div>
+									<input type="text" id="_id" name="_id" class="hide" ng-model="vm.initRule._id"/>
+									<input type="text" class="form-control" id="name" name="name" ng-model="vm.initRule.name" required="" placeholder="请输入规则名称，简要说明作用"></div>
 							</div>
 							<div class="form-group">
 								<label for="domain" class="col-sm-2 control-label">域名</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="domain" name="domain" ng-model="initRule.domain" required="" placeholder="请输入域名，不带http://"></div>
+									<input type="text" class="form-control" id="domain" name="domain" ng-model="vm.initRule.domain" required="" placeholder="请输入域名，不带http://"></div>
 							</div>
 							<div class="form-group">
 								<label for="url" class="col-sm-2 control-label">匹配</label>
 								<div class="col-sm-9">
-									<input type="url" class="form-control" id="url" name="url" ng-model="initRule.url" required="" placeholder="请输入匹配的正则表达式"></div>
+									<input type="url" class="form-control" id="url" name="url" ng-model="vm.initRule.url" required="" placeholder="请输入匹配的正则表达式"></div>
 							</div>
 							<div class="form-group">
 								<label for="forbid" class="col-sm-2 control-label">状态</label>
 								<div class="col-sm-9">
-									<input type="radio" id="forbid" name="forbid" ng-model="initRule.forbid" value="0"/> 启用
-									<input type="radio" id="forbid" name="forbid" ng-model="initRule.forbid" value="1"/> 禁用
+									<input type="radio" id="forbid" name="forbid" ng-model="vm.initRule.forbid" value="0"/> 启用
+									<input type="radio" id="forbid" name="forbid" ng-model="vm.initRule.forbid" value="1"/> 禁用
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="type" class="col-sm-2 control-label">代码类型</label>
 								<div class="col-sm-9">
-									<input type="radio" id="type" name="type" ng-model="initRule.type" value="1"/> 网页环境中执行
-									<input type="radio" id="type" name="type" ng-model="initRule.type" value="0"/> 沙盒环境中执行
+									<input type="radio" id="type" name="type" ng-model="vm.initRule.type" value="1"/> 网页环境中执行
+									<input type="radio" id="type" name="type" ng-model="vm.initRule.type" value="0"/> 沙盒环境中执行
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="code" class="col-sm-2 control-label">代码</label>
 								<div class="col-sm-9">
-									<textarea class="form-control pre" rows="10" required="" id="code" ng-model="initRule.code" name="code" placeholder="请输入代码，可直接使用jQuery的$符号"></textarea>
+									<textarea class="form-control pre" rows="10" required="" id="code" ng-model="vm.initRule.code" name="code" placeholder="请输入代码，可直接使用jQuery的$符号"></textarea>
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary" ng-click="saveRule()">保存</button>
+						<button type="button" class="btn btn-primary" ng-click="vm.saveRule()">保存</button>
 					</div>
 				</div>
 			</div>
