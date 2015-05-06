@@ -97,7 +97,7 @@ function anyScriptControl($scope, $http){
 	vm.rules=ruleDB.find();
 
 	vm.page = {
-		size: 50,
+		size: 20,
 		index: 1
 	};
 }
