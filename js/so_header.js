@@ -31,6 +31,7 @@ function search(qu){
 	}
 	//qu=encodeURIComponent(qu);
 	var bdurl="http://www.baidu.com/s?ie=UTF-8&wd="+qu;
-	var ggurl="http://cn.bing.com/search?q="+qu;
+	//var ggurl="http://cn.bing.com/search?q="+qu;
+	var ggurl="http://www.google.com.hk/custom?newwindow=1&ie=utf8&start=0&num=20&q="+qu;
 	parent.so(bdurl,ggurl);
 }
