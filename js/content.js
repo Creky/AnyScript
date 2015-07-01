@@ -24,7 +24,7 @@ String.prototype.trim = function() {
 			if (!rules[i].type) {
 				console.log("run code:", rules[i].code);
 				eval(rules[i].code);
-			} else if (rules[i].type == 1) {
+			} else {
 				//Run with page script context
 				var script = document.createElement("script");
 				script.setAttribute("type","text/javascript");

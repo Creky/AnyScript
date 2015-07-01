@@ -114,15 +114,28 @@
 							<div class="form-group">
 								<label for="forbid" class="col-sm-2 control-label">状态</label>
 								<div class="col-sm-9">
-									<input type="radio" id="forbid" name="forbid" ng-model="vm.initRule.forbid" value="0"/> 启用
-									<input type="radio" id="forbid" name="forbid" ng-model="vm.initRule.forbid" value="1"/> 禁用
+									<input type="radio" name="forbid" ng-model="vm.initRule.forbid" value="0" 
+									ng-checked="vm.initRule.forbid==0||vm.initRule.forbid==null"/> 启用
+									<input type="radio" name="forbid" ng-model="vm.initRule.forbid" value="1"
+									ng-checked="vm.initRule.forbid==1"/> 禁用
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="type" class="col-sm-2 control-label">代码类型</label>
 								<div class="col-sm-9">
-									<input type="radio" id="type" name="type" ng-model="vm.initRule.type" value="1"/> 网页环境中执行
-									<input type="radio" id="type" name="type" ng-model="vm.initRule.type" value="0"/> 沙盒环境中执行
+									<input type="radio" name="type" ng-model="vm.initRule.type" value="1"
+									ng-checked="vm.initRule.type||vm.initRule.type==null" /> 网页环境中执行
+									<input type="radio" name="type" ng-model="vm.initRule.type" value="0"
+									ng-checked="vm.initRule.type==0"/> 沙盒环境中执行
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="forbid" class="col-sm-2 control-label">引入jQuery</label>
+								<div class="col-sm-9">
+									<input type="radio" name="loaddjq" ng-model="vm.initRule.loaddjq" value="1" 
+									ng-checked="vm.initRule.loaddjq||vm.initRule.loaddjq==null" /> 引入
+									<input type="radio" name="loaddjq" ng-model="vm.initRule.loaddjq" value="0" 
+									ng-checked="vm.initRule.loaddjq==0"/> 不引入
 								</div>
 							</div>
 							<div class="form-group">

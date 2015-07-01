@@ -38,6 +38,9 @@ function anyScriptControl($scope, $http){
 	};
 	vm.addRule=function(){
 		vm.initRule={};
+		vm.initRule.forbid=0;
+		vm.initRule.type=1;
+		vm.initRule.loaddjq=1;
 		$('#addModel').modal('show');
 	};
 	vm.editRule=function(id){
