@@ -29,6 +29,7 @@ function search(qu){
 	if(!qu){
 		return;
 	}
+	qu=qu.replace(/\#/ig,"%23");
 	//qu=encodeURIComponent(qu);
 	var bdurl="http://www.baidu.com/s?ie=UTF-8&wd="+qu;
 	//var ggurl="http://cn.bing.com/search?q="+qu;

@@ -39,6 +39,7 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
 	//details.responseHeaders.splice(-2,1);
 	for (var i = 0; i < details.responseHeaders.length; i++) {
 		if (details.responseHeaders[i].name === 'x-frame-options') {
+			console.log("当前响应头：",details.responseHeaders[i].name,details.responseHeaders[i].value);
 			details.responseHeaders.splice(i, 1);
 			break;
 		}
