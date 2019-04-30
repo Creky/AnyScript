@@ -31,7 +31,7 @@ String.prototype.trim = function() {
 		}
 		if(loadjq){
 			var script=document.createElement("script");
-			script.src="http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"
+			script.src="https://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"
 			document.body.appendChild(script);
 			console.log("Loading jQuery 1.8.3 ...");
 			checkRunWithJQ(rules);
