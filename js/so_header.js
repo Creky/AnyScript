@@ -33,7 +33,7 @@ function search(qu){
 	//qu=encodeURIComponent(qu);
 	var bdurl="http://www.baidu.com/s?ie=UTF-8&wd="+qu;
 	//var ggurl="http://cn.bing.com/search?q="+qu;
-	var ggurl="https://www.google.com.hk/#newwindow=1&q="+qu;
+	var ggurl="https://www.google.com/search?newwindow=1&q="+qu;
 	//var ggurl="http://www.gfsoso.net/?q="+qu;
 	parent.so(bdurl,ggurl);
 }
