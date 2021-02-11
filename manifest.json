@@ -1,7 +1,7 @@
 {
 	"name": "AnyScript",
-	"version": "1.1.2",
-	"manifest_version": 2,
+	"version": "1.1.3",
+	"manifest_version": 3,
 	"description": "AnyScript can execute any javascript from specified server or customed matched with url.",
 	"background": {
 		"scripts": ["js/storedb.js", "js/background.js"]

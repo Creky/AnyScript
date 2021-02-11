@@ -1,8 +1,8 @@
 #AnyScript
 * AnyScript means this extension can run any javascript in webkit kernel browsers.
-* You can download installation file "AnyScript.crx" from http://yunpan.cn/cjYveag8k3Tsb （password：bb0f）
 
-###Multiple search function:
+
+### Multiple search function:
 Add a new feature for query both baidu.com and google.com in one page at the same time. And it will be allowed to custom the search engine in a following version.
 
 **Search page**: this extension path +"/so.html", support parameter use the key "q",like this:  
